@@ -343,7 +343,19 @@ class EndpointsMixin(object):
 
         """
         # return self.post('direct_messages/new', params=params)
-        return self.post('direct_messages/events/new', params=params)
+        return self.post('direct_messages/events/new/message_create', params=params)
+
+    def post_message(self, **kwargs):
+        # endpoint, user_id, msg, version='1.1'
+        user_id = kwargs['user_id']
+        text = kwargs['text']
+        version = '1.1'
+        return self.request('direct_messages/events/new',
+                            'POST', params='{"event": {"type": "message_create", '
+                                           '"message_create": {"target": {"recipient_id": "' + user_id + '"}, '
+                                            '"message_data": {"text": "' + text + '"}}}}',
+                            version=version)
+
     # Friends & Followers
     def get_user_ids_of_blocked_retweets(self, **params):
         """Returns a collection of user_ids that the currently authenticated
