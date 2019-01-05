@@ -185,6 +185,7 @@ class Twython(EndpointsMixin, object):
             if response.status_code == 429:
                 # Twitter API 1.1, always return 429 when
                 # rate limit is exceeded
+                """TODO add handling of rate limit in for sinclaire"""
                 ExceptionType = TwythonRateLimitError
             elif response.status_code == 401 or 'Bad Authentication data' \
                     in error_message:
