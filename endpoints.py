@@ -346,6 +346,11 @@ class EndpointsMixin(object):
         return self.post('direct_messages/events/new/message_create', params=params)
 
     def post_message(self, **kwargs):
+        """
+        admin@mylocaltech.co
+        :param kwargs: user_id, text
+        :return:
+        """
         # endpoint, user_id, msg, version='1.1'
         user_id = kwargs['user_id']
         text = kwargs['text']
